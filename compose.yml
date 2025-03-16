@@ -40,4 +40,4 @@ services:
     networks:
       - monitoring
     volumes:
-      - ./grafana_data:/var/lib/grafana
+      - grafana_data:/var/lib/grafana
