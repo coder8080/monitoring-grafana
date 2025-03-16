@@ -17,6 +17,9 @@ services:
       - "--path.rootfs=/host"
     networks:
       - monitoring
+    profiles:
+      - monitoring
+      - monitoring-grafana
 
   prometheus:
     image: prom/prometheus:latest
@@ -24,12 +27,16 @@ services:
     restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
       - 9090:9090
     networks:
       - monitoring
+    profiles:
+      - monitroing
+      - monitoring-grafana
 
   grafana:
     image: grafana/grafana
@@ -41,3 +48,5 @@ services:
       - monitoring
     volumes:
       - grafana_data:/var/lib/grafana
+    profiles:
+      - monitoring-grafana
