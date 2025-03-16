@@ -35,7 +35,7 @@ services:
     networks:
       - monitoring
     profiles:
-      - monitroing
+      - monitoring
       - monitoring-grafana
 
   grafana:
